@@ -1,0 +1,16 @@
+platform: linux/amd64
+
+# Define a temporary volume for communicating with the DIND service.
+.dockervol: &dockervol
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+
+pipeline:
+  job-docker:
+    # Uses a custom DIND job instead of the plugin because of
+    # the dynamic setting of the registry from secrets.
+    image: docker:dind
+    commands:
+      - docker run --rm hello-world
+    # Needs 'trusted' privileges
+    <<: *dockervol
