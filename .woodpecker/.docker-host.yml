@@ -7,8 +7,6 @@ platform: linux/amd64
 
 pipeline:
   job-docker:
-    # Uses a custom DIND job instead of the plugin because of
-    # the dynamic setting of the registry from secrets.
     image: docker:dind
     commands:
       - docker run --rm hello-world

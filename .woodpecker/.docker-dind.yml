@@ -1,0 +1,17 @@
+platform: linux/amd64
+
+pipeline:
+  job-docker-dind:
+    image: docker:dind
+    commands:
+      - sleep 10 # give docker enough time to start
+      - docker run --rm hello-world
+    volumes:
+      - /tmp/docker-dind/socket:/var/run
+
+services:
+  docker:
+    image: docker:dind
+    privileged: true
+    volumes:
+      - /tmp/docker-dind/socket:/var/run
