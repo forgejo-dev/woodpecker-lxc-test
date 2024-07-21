@@ -2,7 +2,7 @@ platform: lxc
 
 pipeline:
   job-lxc:
-    image: debian:bullseye
+    image: debian:bookworm
     commands:
       # Set up Docker
       - apt-get install -yq ca-certificates curl gnupg lsb-release
